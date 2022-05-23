@@ -1,7 +1,5 @@
 import Proyecto from '../models/Proyecto.js'
 
-
-
 const obtenerProyectos = async (req, res) => {
 
     console.log(req);
