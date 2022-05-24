@@ -1,14 +1,16 @@
 import Proyecto from '../models/Proyecto.js'
+import Tarea from '../models/Tarea.js';
 
 const obtenerProyectos = async (req, res) => {
 
-    console.log(req);
     try {
         const proyectos = await Proyecto.find().where('creador').equals(req.usuario);
         res.json(proyectos);
+
     } catch (error) {
         return res.status(404).json({ msg: 'hubo un error en obtenerProyectos' });
     }
+
 
 }
 
@@ -35,7 +37,12 @@ const obtenerProyecto = async (req, res) => {
             return res.status(401).json({ msg: 'no tiene los permisos' });
         }
 
-        return res.json(proyecto);
+        const tareas = await Tarea.find().where('proyecto').equals(proyecto.id);
+
+        return res.json({
+            proyecto,
+            tareas
+        });
 
     } catch (error) {
         console.log(error)
@@ -85,7 +92,7 @@ const eliminarProyecto = async (req, res) => {
 
         await proyecto.deleteOne();
 
-        return res.json({msg: "Proyecto Eliminado"});
+        return res.json({ msg: "Proyecto Eliminado" });
 
     } catch (error) {
         console.log(error)
@@ -97,7 +104,22 @@ const agregarColaborador = async (req, res) => { }
 
 const eliminarColaborador = async (req, res) => { }
 
-const obtenerTareas = async (req, res) => { }
+const obtenerTareas = async (req, res) => {
+
+    // const { id } = req.params;
+
+    // const existeProyecto = await Proyecto.findById(id);
+
+    // if (!existeProyecto) {
+    //     const error = new Error("No Encontrado");
+    //     return res.status(404).json({ msg: error.message })
+    // }
+    // //tienes q ser el creador del proyecto
+
+
+    // res.json(tareas);
+
+}
 
 export {
     obtenerProyectos,

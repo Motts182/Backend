@@ -17,7 +17,7 @@ router.post('/', checkAuth, agregarTarea)
 router.route('/:id')
     .get(checkAuth, obtenerTarea)
     .put(checkAuth, actualizarTarea)
-    .delete(checkAuth, eliminzarTarea)
+    .delete(checkAuth, eliminarTarea)
 
 router.post('/estado/:id', checkAuth, cambiarEstado);
 
