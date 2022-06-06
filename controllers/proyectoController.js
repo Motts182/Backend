@@ -6,12 +6,10 @@ const obtenerProyectos = async (req, res) => {
     try {
         const proyectos = await Proyecto.find().where('creador').equals(req.usuario);
         res.json(proyectos);
-
+Ñ
     } catch (error) {
         return res.status(404).json({ msg: 'hubo un error en obtenerProyectos' });
     }
-
-
 }
 
 const nuevoProyecto = async (req, res) => {
@@ -104,22 +102,6 @@ const agregarColaborador = async (req, res) => { }
 
 const eliminarColaborador = async (req, res) => { }
 
-const obtenerTareas = async (req, res) => {
-
-    // const { id } = req.params;
-
-    // const existeProyecto = await Proyecto.findById(id);
-
-    // if (!existeProyecto) {
-    //     const error = new Error("No Encontrado");
-    //     return res.status(404).json({ msg: error.message })
-    // }
-    // //tienes q ser el creador del proyecto
-
-
-    // res.json(tareas);
-
-}
 
 export {
     obtenerProyectos,
@@ -129,5 +111,4 @@ export {
     eliminarProyecto,
     agregarColaborador,
     eliminarColaborador,
-    obtenerTareas,
 }
